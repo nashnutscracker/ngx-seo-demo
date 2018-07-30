@@ -1,17 +1,76 @@
+header {
+  display: flex;
+  flex-flow: column;
+  height: auto;
+  overflow: hidden;
+  background: -webkit-radial-gradient(circle, #1a82f7, #2F2727);
+}
+
 .leftpane {
     width: 75%;
-    height: 100%;
-    float: left;
-    border-collapse: collapse;
-    background-color: black;
+    margin-left: 0px;
 }
-  
+
 .rightpane {
     width: 25%;
-    height: 100%;
-    position: relative;
-    float: right;
-    border-collapse: collapse;
-    background-color: black;
+}
+
+.logoDiv {
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .heroLogoTag {
+      width:550px;
+  }
+  .leftpane{
+    width:100%;
+  }
+  .rightpane{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .heroLogoTag {
+      width:550px;
+  }
+  .leftpane{
+    width:100%;
+    margin-left: -40px;
+  }
+  .rightpane{
+    width: 100%;
+   margin-top:-50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .heroLogoTag {
+      width:450px;
+  }
+  .leftpane{
+    width:100%;
+    margin-left: -15px;
+  }
+  .rightpane{
+    width: 100%;
+    margin-top: -50px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .heroLogoTag {
+      width:300px;
+  }
+  .leftpane{
+    width:100%;
+    margin-left: 35px;
+  }
+  .rightpane{
+    width: 100%;
+    margin-top: 10px;
+    margin-left: -30px;
+  }
 }
 

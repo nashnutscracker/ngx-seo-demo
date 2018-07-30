@@ -17,8 +17,10 @@ enableProdMode();
 
 // Express server
 const app = express();
+const forceSsl = require('force-ssl-heroku');
 
 app.use(compression());
+app.use(forceSsl);
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
@@ -84,6 +86,13 @@ app.get('/sitemap.xml', function (req, res, next) {
     res.send(xml);
   });
 });
+
+// Get robots.txt file
+app.get('/robots.txt', function (req, res) {
+  res.type('text/plain');
+  res.send("User-agent: *\nDisallow:");
+});
+
 // Server static files from /browser
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
@@ -92,9 +101,14 @@ app.get('*', (req, res) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
 
+app.use(function (err, req, res, next) {
+  console.error(err);
+  res.status(500).send('Internal server error!');
+});
 
-
-
+app.use(function (err, req, res, next) {
+  res.redirect(301, 'http://dry-sea-47434.herokuapp.com');
+});
 
 // Start up the Node server
 app.listen(PORT, () => {
